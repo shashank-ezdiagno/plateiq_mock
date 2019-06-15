@@ -1,0 +1,83 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.html.py
+
+# C extensions
+*.so
+*.DS_Store
+.DS_Store
+
+# Distribution / packaging
+.Python
+env/
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Unit test / coverage reports
+.tox/
+tests/coverage_html/
+tests/.coverage
+tests/report/
+.coverage
+.cache
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Rope
+.ropeproject
+
+# Django stuff:
+*.log
+*.pot
+*.scssc
+*.orig
+*.rej
+
+# Sphinx documentation
+*.swp
+*.swn
+*.swo
+
+#log files
+*.log
+.*.log
+*.log.*
+
+
+# vim temporary files
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# unnecessary files
+
+#django specific
+__pycache__
+MANIFEST
+docs/_build/
+
+node_modules
+bower_components
+aot/*
+dist/*
+yarn.lock
