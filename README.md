@@ -36,5 +36,13 @@ This projects tries to mock the functioning of what plateiq does.
 - I have created sample API requests and responses to get better idea
 - link - https://www.getpostman.com/collections/d273e5861cc5a183a2b5
 
+## SETUP Environment
+- Better to use virtual environment
+- Python Version - 3.6.5
 
-
+```
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+```
+- migrations are already done with sqlite file
