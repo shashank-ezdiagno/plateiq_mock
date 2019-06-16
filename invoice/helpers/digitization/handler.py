@@ -7,17 +7,29 @@ import datetime
 
 
 class DigitizationHandler():
-    def __init__(self, file_id):
-        self.file_id = file_id
+    def __init__(self, file):
+        self.file = file
 
 
     def __initialize__(self):
-        self.file = File.objects.get(id=self.file_id)
-        if not self.file or self.file.state == FileState.DIGITIZED.name:
-            return dict(success=False)
-        pdf_data = self.file.get_pdf_bytes()
+        response = dict(success=True)
+        if not self.file:
+            response["success"]=False
+            response["message"]="File Not Found"
+        elif self.file.state == FileState.IN_PROGRESS.name:
+            response["success"]=False
+            response["message"]="Already in Progress"
+        elif self.file.state == FileState.PARTIAL_DIGITIZED.name:
+            response["success"]=False
+            response["message"]="Under Review"
+        elif self.file.state == FileState.DIGITIZED.name:
+            response["success"]=False
+            response["message"]="Already Uploaded"
+        if not response["success"]:
+            response["invoice_id"] = str(self.file.invoice_set.get().id)
+            return response
         self.invoice = Invoice.objects.create_from_pdf(self.file, self.file.buyer)
-        return dict(success=True, data=pdf_data)
+        return dict(success=True, invoice=self.invoice)
 
     def digitize_data(self, ptr):
         # processing invoice
@@ -52,15 +64,13 @@ class DigitizationHandler():
 class VendorHandler():
     @staticmethod
     def get_mock_vendor_data():
-        return dict(name="A B C Enterprises",
-                    address="Sahakar Market,Nr. SaiBaba Beakery, Pant Nagar, Ghatkopar (East), Shival Nagar, Gaurishankar Wadi, Pant Nagar, Ghatkopar East, Mumbai, Maharashtra 400075")
+        return Vendor.objects.all().first()
     @staticmethod
     def extract_vendor(file_ptr):
         # vendor data extraction logic
-        mock_vendor_data = VendorHandler.get_mock_vendor_data()
+        vendor_data = VendorHandler.get_mock_vendor_data()
         # get  or create vendor from db
-        vendor_id = "41b76332-cfde-46dd-8422-a4edd06c89b8"
-        return file_ptr, vendor_id
+        return file_ptr, str(vendor_data.id)
 
 class InvoiceNumberHandler():
     @staticmethod

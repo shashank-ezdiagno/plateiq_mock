@@ -22,11 +22,13 @@ class InvoiceItemSerializer(serializers.ModelSerializer):
     def update(self, instance, update_dict):
         fields = ["quantity","total_cost","unit_price","serial_no"]
         update=False
+        updated_fields=[]
         for field in fields:
             if field in update_dict:
                 setattr(instance, field, update_dict[field])
                 update = True
+                updated_fields.append(field)
         if update:
             instance.save()
-        return instance
+        return updated_fields
 
