@@ -46,3 +46,6 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 - migrations are already done with sqlite file
+- admin access is created
+  - Username = "foo"
+  - Password = "bar12345"
