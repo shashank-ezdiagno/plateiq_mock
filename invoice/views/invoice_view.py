@@ -11,7 +11,7 @@ def show(request, invoice_id):
     invoice_items = InvoiceItemSerializer(invoice.invoiceitem_set.all(),many=True)
     data = InvoiceSerializer(invoice).data
     fields = ["payment_mode","sub_total",'tax',\
-                        'total','paid','refund','due','state']
+                        'total','paid','refund','due']
     result = {}
     for field in fields:
         result[field] = data[field]
