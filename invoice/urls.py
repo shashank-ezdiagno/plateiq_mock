@@ -4,11 +4,13 @@ from .views.upload_invoice_view import upload
 from .views.digitization_progress_view import list_view
 from .views.invoice_view import show
 from .views.invoice_viewset import InvoiceViewSet
+from .views.file_viewset import FileViewSet
 from django.conf.urls import include, url
 from rest_framework_nested import routers
 
 router = routers.SimpleRouter()
 router.register(r'invoice', InvoiceViewSet)
+router.register(r'file', FileViewSet)
 
 urlpatterns = [
     url(r'^$', upload, name='upload'),
