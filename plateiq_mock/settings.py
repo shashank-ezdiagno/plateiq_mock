@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from botocore.client import Config
+import boto3
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -55,7 +57,9 @@ ROOT_URLCONF = 'plateiq_mock.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            'templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,6 +104,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AWS_ACCESS_KEY_ID = "AKIA5YY74LARB355PLXJ"#os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = "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"#os.environ.get('AWS_SECRET_ACCESS_KEY')
+
+S3_CLIENT = boto3.client('s3', 'us-east-1',
+                        aws_access_key_id= AWS_ACCESS_KEY_ID,
+                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+                        config=Config(signature_version='s3v4'))
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -119,3 +131,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+S3_KEY='db6dd887-b280-4de4-bbd6-f6b83e9f6f00'
+S3_BUCKET='plateiq-mock'
+S3_PDF_PREFIX='pdf'
