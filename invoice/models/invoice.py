@@ -21,6 +21,13 @@ class InvoiceManager(models.Manager):
         invoice.save(using=self._db)
         return invoice
 
+    def safe_get(self, *args, **kwargs):
+        try:
+            value = self.get(*args, **kwargs)
+        except self.model.DoesNotExist:
+            value = None
+        return value
+
 
 class Invoice(models.Model):
     class Meta:

@@ -1,5 +1,15 @@
 from django.db import models
 import uuid
+
+class VendorItemManager(models.Manager):
+    def safe_get(self, *args, **kwargs):
+        try:
+            value = self.get(*args, **kwargs)
+        except self.model.DoesNotExist:
+            value = None
+        return value
+
+
 class VendorItem(models.Model):
     class Meta:
         app_label = 'invoice'
@@ -11,7 +21,7 @@ class VendorItem(models.Model):
     last_unit_price = models.FloatField()
     vendor = models.ForeignKey("Vendor", on_delete = models.PROTECT)
     unit_of_measure = models.CharField(max_length=20, null=True, blank=True)
-
+    objects=VendorItemManager()
 
     def __str__(self):
         return self.name

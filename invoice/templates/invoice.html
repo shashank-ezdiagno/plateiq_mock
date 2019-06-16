@@ -38,7 +38,7 @@ td {
             {% for item in items %}
               <tr>
                   <td>{{ item.item.name }}<td>
-                  <td>{{ item.quantity}}   {{ item.item.unit_of_measure}}<td>
+                  <td>{{ item.quantity}}   {% if item.item.unit_of_measure %}{{ item.item.unit_of_measure}}{% endif %}<td>
                   <td>{{ item.unit_price}}<td>
                   <td>{{ item.total_cost}}<td>
               </tr>
