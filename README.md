@@ -44,7 +44,9 @@ This projects tries to mock the functioning of what plateiq does.
 pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
+python manage.py runserver
 ```
+- access app at localhost:8000/invoice
 - migrations are already done with sqlite file
 - admin access is created
   - Username = "foo"
