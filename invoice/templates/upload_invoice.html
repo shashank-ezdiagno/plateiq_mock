@@ -1,0 +1,20 @@
+<html>
+<body>
+{% block content %}
+  <div>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Buyer -
+    <span>{{buyer_name}}</span></label><br>
+    <input type="file" name="myfile"><br>
+
+    <button type="submit">Upload</button>
+  </form>
+  </div>
+  {% if uploaded_file_id %}
+    <p>File uploaded at: {{ uploaded_file_id }}</p>
+    <p><a href="{% url 'list' %}">See Progress</a></p>
+  {% endif %}
+{% endblock %}
+</body>
+</html>

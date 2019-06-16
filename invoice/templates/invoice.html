@@ -1,0 +1,62 @@
+<html>
+<style type="text/css">
+
+    table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+td {
+  width: 25% ;
+}
+</style>
+<body>
+    {% block content %}
+        <p>
+          <h3>Buyer</h3>
+          <span>{{buyer.name}}</span><br>
+          <span>{{buyer.address_full_address}}</span>
+        </p>
+        <p>
+          <h3>Seller</h3>
+          <span>{{vendor.name}}</span><br>
+          <span>{{vendor.address_full_address}}</span>
+        </p>
+        <table >
+            <tbody>
+                <tr>
+                  <td colspan="2">Invoice Number: {{invoice_number}}</td>
+                  <td colspan="2">Date: {{created_date}}</td>
+                </tr>
+            </tbody>
+            <tbody>
+            <tr >
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Price</th>
+            </tr>
+            {% for item in items %}
+              <tr>
+                  <td>{{ item.item.name }}<td>
+                  <td>{{ item.quantity}}   {{ item.item.unit_of_measure}}<td>
+                  <td>{{ item.unit_price}}<td>
+                  <td>{{ item.total_cost}}<td>
+              </tr>
+            {% endfor %}
+            </tbody>
+            <tbody>
+                {% for key, value in invoice.items %}
+                <tr>
+                  <td><td>
+                  <td><td>
+                  <td>{{key}}<td>
+                  <td>{{value}}<td>
+              </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+
+    {% endblock %}
+</body>
+
+</html>

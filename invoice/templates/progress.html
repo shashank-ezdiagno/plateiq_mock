@@ -1,0 +1,30 @@
+<html>
+
+<body>
+    {% block content %}
+    <div>
+        <table style="width:100%">
+            <tr>
+                <th>ID</th>
+                <th>File Name</th>
+                <th>Progress</th>
+                <th>Invoice</th>
+            </tr>
+            {% for file in files %}
+              <tr>
+                  <td>{{ file.id }}<td>
+                  <td>{{ file.name }}<td>
+                  <td>{{ file.state }}<td>
+                    {% ifequal file.state 'Uploaded' %}
+                        <td><a href="{% url 'show' file.invoice_id %}">See Digital Invoice</td>
+                    {% else %}
+                        <td>NA</td>
+                    {% endifequal %}
+              </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endblock %}
+</body>
+
+</html>
