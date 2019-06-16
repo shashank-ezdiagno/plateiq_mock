@@ -25,8 +25,16 @@ This projects tries to mock the functioning of what plateiq does.
 - InvoiceItem - items purchased within an invoice(PK reference to VendorItem)
 
 ### Data Flow
-- access /invoice/ to upload file
-- access /invoice/progress to see progress
+- buyer access /invoice/ to upload file
+- buyer access /invoice/progress to see progress of uploaded files
+- GET request(can be POST) by staff to start digitizing a file by id - /api/v1/file/{file_id}/
+- PATCH request by staff to update digital invoice - /invoice/api/v1/invoice/{invoice_id}/
+- UPDATE invoice state to DIGITIZED
+- buyer access invoice on its dashboard - /invoice/show/{invoice_id} - Access Denied for invoices which are not digitized
+
+### Postman Link
+- I have created sample API requests and responses to get better idea
+- link - https://www.getpostman.com/collections/d273e5861cc5a183a2b5
 
 
 
