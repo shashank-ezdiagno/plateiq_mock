@@ -3,7 +3,8 @@ import uuid
 class InvoiceItem(models.Model):
     class Meta:
         app_label = 'invoice'
-        ordering = ('serial_no',)
+        ordering = ('invoice', 'serial_no')
+        unique_together = ('invoice', 'serial_no',)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     item = models.ForeignKey("VendorItem", on_delete = models.PROTECT)
     quantity = models.FloatField()
