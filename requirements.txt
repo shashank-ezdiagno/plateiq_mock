@@ -1,2 +1,5 @@
 uuid
 django=2.2.2
+boto3
+djangorestframework
+drf-nested-routers
