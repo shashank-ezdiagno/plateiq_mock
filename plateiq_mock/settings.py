@@ -104,8 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AWS_ACCESS_KEY_ID = "AKIA5YY74LARB355PLXJ"#os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = "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"#os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 S3_CLIENT = boto3.client('s3', 'us-east-1',
                         aws_access_key_id= AWS_ACCESS_KEY_ID,
